@@ -939,7 +939,7 @@
         if (this.customStyleSelector) {
           classes.push(this.customStyleSelector)
         }
-        var revokeBtn = this.options.revokeBtn.replace('{{classes}}', classes.join(' '));
+        var revokeBtn = this.options.revokeBtn.replace('{{classes}}', classes.join(' ')).replace('{{policy}}', this.options.content.policy);
         this.revokeBtn = appendMarkup.call(this, revokeBtn);
 
         var btn = this.revokeBtn;
