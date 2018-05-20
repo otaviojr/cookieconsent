@@ -562,10 +562,10 @@
       return val == cc.status.allow || val == cc.status.dismiss;
     };
 
-    // opens the popup if no answer has been given
+    // opens the popup if no answer has been given or show the revokeButton
     CookiePopup.prototype.autoOpen = function(options) {
       !this.hasAnswered() && this.options.enabled && this.open();
-      this.hasAnswered() && this.options.enabled && this.toogleRevokeButton(true);
+      this.hasAnswered() && this.options.enabled && this.toggleRevokeButton(true);
     };
 
     CookiePopup.prototype.setStatus = function(status) {
