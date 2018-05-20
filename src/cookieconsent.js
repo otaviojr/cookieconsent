@@ -176,9 +176,6 @@
       // if false, this prevents the popup from showing (useful for giving to control to another piece of code)
       enabled: true,
 
-      // if user already choose, show polices to allow him to revoke
-      minimized: false,
-
       // optional (expecting a HTML element) if passed, the popup is appended to this element. default is `document.body`
       container: null,
 
@@ -357,10 +354,10 @@
       }
 
       // returns true if `onComplete` was called
-      if (checkCallbackHooks.call(this)) {
+      //if (checkCallbackHooks.call(this)) {
         // user has already answered
-        this.options.minimized = true;
-      }
+      //  this.options.enabled = false;
+      //}
 
       // apply blacklist / whitelist
       if (arrayContainsMatches(this.options.blacklistPage, location.pathname)) {
