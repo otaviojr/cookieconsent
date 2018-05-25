@@ -1454,7 +1454,7 @@
       delete options.location;
 
       if (result.code) {
-        options = law.applyLaw(options, result.code, complete);
+        options = law.applyLaw(options, result.code, options.onInitialise.bind(this));
       }
 
       complete(new cc.Popup(options));
