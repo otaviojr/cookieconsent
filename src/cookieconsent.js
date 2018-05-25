@@ -1388,11 +1388,11 @@
       explicitAction: ['HR', 'IT', 'ES'],
     };
 
-    function Law(options) {
+    function Law(options, complete) {
       this.initialise.apply(this, arguments);
     }
 
-    Law.prototype.initialise = function(options) {
+    Law.prototype.initialise = function(options, complete) {
       // set options back to default options
       util.deepExtend(this.options = {}, defaultOptions);
 
@@ -1400,6 +1400,8 @@
       if (util.isPlainObject(options)) {
         util.deepExtend(this.options, options);
       }
+
+      this.complete = complete;
     };
 
     Law.prototype.get = function(countryCode) {
@@ -1412,13 +1414,14 @@
     };
 
     Law.prototype.applyLaw = function(options, countryCode) {
-      var complete = options.onInitialise.bind(this);
       var country = this.get(countryCode);
 
       if (!country.hasLaw) {
         // The country has no cookie law
         options.enabled = false;
-        complete(cc.status.allow);
+        if(this.complete){
+          this.complete(cc.status.allow);
+        }
       }
 
       if (this.options.regionalLaw) {
@@ -1442,7 +1445,7 @@
   // This function initialises the app by combining the use of the Popup, Locator and Law modules
   // You can string together these three modules yourself however you want, by writing a new function.
   cc.initialise = function(options, complete, error) {
-    var law = new cc.Law(options.law);
+    var law = new cc.Law(options.law, complete);
 
     if (!complete) complete = function() {};
     if (!error) error = function() {};
