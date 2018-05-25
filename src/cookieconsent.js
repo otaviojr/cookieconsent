@@ -1411,15 +1411,15 @@
       };
     };
 
-    Law.prototype.applyLaw = function(options, countryCode, complete) {
+    Law.prototype.applyLaw = function(options, countryCode) {
       var country = this.get(countryCode);
 
       if (!country.hasLaw) {
         // The country has no cookie law
         options.enabled = false;
-        if(complete){
-          complete(cc.status.allow);
-        }
+        options.countryHasCookieLaw = false;
+      } else {
+        options.countryHasCookieLaw = true;        
       }
 
       if (this.options.regionalLaw) {
@@ -1454,7 +1454,7 @@
       delete options.location;
 
       if (result.code) {
-        options = law.applyLaw(options, result.code, options.onInitialise.bind(new cc.Popup(options)));
+        options = law.applyLaw(options, result.code);
       }
 
       complete(new cc.Popup(options));
