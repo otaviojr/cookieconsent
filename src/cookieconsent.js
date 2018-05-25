@@ -1412,7 +1412,7 @@
     };
 
     Law.prototype.applyLaw = function(options, countryCode) {
-      var complete = this.options.onInitialise.bind(this);
+      var complete = options.onInitialise.bind(this);
       var country = this.get(countryCode);
 
       if (!country.hasLaw) {
