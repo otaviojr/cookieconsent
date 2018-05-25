@@ -1417,9 +1417,9 @@
       if (!country.hasLaw) {
         // The country has no cookie law
         options.enabled = false;
-        options.countryHasCookieLaw = false;
+        options.countryHasCookiesLaw = false;
       } else {
-        options.countryHasCookieLaw = true;        
+        options.countryHasCookiesLaw = true;
       }
 
       if (this.options.regionalLaw) {
