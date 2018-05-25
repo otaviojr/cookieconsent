@@ -1417,6 +1417,7 @@
       if (!country.hasLaw) {
         // The country has no cookie law
         options.enabled = false;
+        complete(cc.status.allow);
       }
 
       if (this.options.regionalLaw) {
